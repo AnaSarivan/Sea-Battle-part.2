@@ -1,0 +1,421 @@
+/*
+HW1: display: block vs inline 
+HW2: units: vh, vw, vmax, vmin ...
+
+HW1: review css position: absolute, relative, fixed, sticky
+position: absolute;
+*/
+ /*
+html {
+   height: 100%;
+}*/
+
+body {
+    margin: 0;
+    /*height: 100%;*/
+}
+
+.l-header {
+    background: #222;
+    height: 20vh;
+}
+
+.l-content {
+    background: #333;
+    height: 60vh;
+}
+
+.l-footer {
+    background: #444;
+    height: 20vh;
+}
+
+.sea {
+    --wave-color: darkblue;
+}
+
+.sea .wave {
+    height: 100px;
+    background-color: var(--wave-color);
+}
+
+.sea .wave::before {
+    content: "";
+    display: block;
+   /* border: 1px solid green;*/
+    height: 100px;
+
+    background-image: radial-gradient(var(--wave-color) 47%, transparent 48%);
+    background-position: 50px 38px;
+    background-size: 100px 300px;
+    background-repeat: repeat-x;
+
+    transform: translateY(-120px);
+}
+
+.sea .wave::after {
+    content: "";
+    display: block;
+   /* border: 1px solid red;*/
+    height: 100px;
+
+    background-image: 
+       radial-gradient(transparent 49%, var(--wave-color) 50%), 
+       linear-gradient(var(--wave-color), var(--wave-color));
+    background-position: 0 -35px, 0 35px;
+    background-size: 100px 60px;
+    background-repeat: repeat-x;
+
+    transform: translateY(-120px);
+}
+
+/*TORPEDO Style*/
+.center {
+    /*absolute center*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.sea .torpedo {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 1px solid yellowgreen;
+}
+
+.sea .torpedo .head {
+    position: absolute;    
+    
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 100%;
+}
+
+.sea .torpedo .body {
+    position: absolute;    
+    width: 50px;
+    height: 50px;
+    background-color: #555;
+    border-radius: 100%;
+}
+
+.sea .torpedo .tail {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #999;
+    border-radius: 100%;
+}
+
+.sea .torpedo .tail-v {
+    position: absolute;
+    width: 10px;
+    height: 100px;
+    background-color: #666;
+}
+
+.sea .torpedo .tail-h {
+    position: absolute;
+    width: 100px;
+    height: 10px;
+    background-color: #666;
+
+}
+
+.sea .torpedo.reverse .head {
+    z-index: 3;
+
+    width: 40px;
+    height: 40px;
+}
+
+.sea .torpedo.reverse .body {
+    z-index: 2;
+
+    width: 55px;
+    height: 55px;
+}
+
+.sea .torpedo.reverse .tail {
+    z-index: 0;
+
+    width: 60px;
+    height: 60px;
+}
+
+.sea .torpedo.reverse .tail-h {
+    z-index: 1;   
+}
+
+.sea .torpedo.reverse .tail-v {
+    z-index: 1;   
+}
+
+/* HW: - drow a ship with css*/
+
+.ship {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    /*border: 1px solid red;*/
+    background-color: white;
+
+    display: flex; 
+    flex-direction: column;   
+    justify-content: flex-end;     
+    align-items: center;
+    padding-bottom: 50px;
+    --ship-color: #d0cece;
+    --ship-graycolor: #5d5959;
+}
+
+.ship .ship-top .top-L {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    bottom: 168px;
+    left: 290px;
+    background: var(--ship-graycolor);
+    display: inline-block;
+}
+
+.ship .ship-top .top-M {
+    position: absolute;
+    width: 6px;
+    height: 60px;
+    bottom: 168px;
+    left: 320px;
+    background: var(--ship-color);
+    display: inline-block;
+}
+
+.ship .ship-top .top-M::after {
+    content: "";
+    display: block;    
+    width: 30px;
+    height: 5px;
+
+    position: absolute;    
+    top: -5px;        
+    left: -12px;    
+    background: var(--ship-graycolor);     
+    transform: skew(-180deg);
+}
+
+.ship .ship-top .top-R {
+    position: absolute;
+    width: 15px;
+    height: 35px;
+    bottom: 168px;
+    right: 242px;
+    background: var(--ship-graycolor);
+    display: inline-block;
+    
+}
+
+.ship .ship-top-1 {
+    position: relative;
+    width: 86px;
+    height: 18px;
+    /*border: 1px solid red;*/
+    right: -25px;   
+    background: var(--ship-color);
+}
+
+.ship .ship-top-1::after {
+    content: "";
+    display: block;    
+    
+    position: absolute;
+    right: -9px;
+
+    border: 25px solid var(--ship-color);
+    border-right: 0;
+    border-bottom: 0;
+    border-top-color: transparent;
+    border-top-width: 20px;
+    border-left-width: 10px;
+}
+
+.tank-design {
+    width: 40px;
+    height: 15px;
+    /*border: 1px solid red;*/
+    background: var(--ship-color);
+    border-radius: 40% 40% 1% 1%; 
+}
+
+.ship .ship-top-2 {   
+    position: relative; 
+    width: 120px;
+    height: 25px; 
+    right: -20px;
+    /*border: 1px solid red;*/
+    display: inline-block; 
+    background: var(--ship-graycolor);   
+     
+}
+
+.ship .ship-top-2::after {
+    content: "";
+    display: block;    
+    
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+
+    border: 25px solid var(--ship-graycolor);
+    border-left: 0;
+    border-bottom: 0;
+    border-top-color: transparent;
+    border-top-width: 25px;
+    border-right-width: 15px;
+}
+
+.ship .ship-top-2::before {
+    content: "";
+    display: block;
+    height: inherit;
+    width: 20px;
+    background: inherit;   
+
+    position: relative;
+    right: -120px;
+    transform-origin: right bottom;
+    transform: skew(25deg);
+}
+
+.ship .ship-top-2 .ship-tank-1 {
+    position: absolute;
+    left: -70px;
+    bottom: -1px;
+}
+
+.ship .ship-top-2 .ship-tank-1::after {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 6px;
+    background: inherit;  
+
+    position: absolute; 
+    top: -15px; 
+    border-radius: 10%;   
+    transform: skew(45deg);
+}
+
+.ship .ship-middle {
+    width: 280px;
+    height: 25px;
+   /* border: 1px solid red;*/
+    background-color: var(--ship-color);
+    display: inline-block;    
+}
+
+.ship .ship-middle::after {
+    content: "";
+    display: block;
+    height: inherit;
+    width: 30px;
+    background: inherit;
+    /*border: 1px solid green;*/
+
+    position: absolute;
+    left: 135px;
+    transform-origin: left bottom;
+    transform: skew(-30deg);
+}
+
+.ship .ship-middle::before {
+    content: "";
+    display: block;
+    height: inherit;
+    width: 30px;
+    background: inherit;
+    /*border: 1px solid green;*/
+
+    position: absolute;
+    right: 145px;
+    transform-origin: bottom;
+    transform: skew(30deg);
+}
+
+.ship .ship-middle .ship-tank-1 {
+    position: absolute;  
+    display: inline-block;
+    left: 80px;
+    bottom: 100px;  
+     
+}
+
+.ship .ship-middle .ship-tank-1::after {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 6px;
+    background: inherit;
+    /*border: 1px solid green;*/
+
+    position: absolute; 
+    top: -15px; 
+    border-radius: 10%;
+   
+    transform: skew(45deg);
+}
+
+.ship .ship-middle .ship-tank-2 {
+    position: absolute;  
+    display: inline-block;
+    right: 90px;
+    bottom: 100px;      
+}
+
+.ship .ship-middle .ship-tank-2::after {
+    content: "";
+    display: block;
+    height: 30px;
+    width: 6px;
+    background: inherit;
+    /*border: 1px solid green;*/
+
+    position: absolute; 
+    left: 35px;  
+    top: -15px; 
+    border-radius: 10%;
+   
+    transform: skew(-45deg);
+}
+
+.ship .ship-bottom { 
+    position: relative;
+    width: 480px;
+    height: 50px;
+    
+    /*border: 1px solid blue;`
+      margin: 0 100px 0 70px; */
+    background: linear-gradient(var(--ship-graycolor) 50%, brown 50%);
+    border-radius: 0 0 100px 0;      
+}
+
+.ship .ship-bottom::after {
+    content: "";
+    display: block;
+    height: inherit;
+    width: 30px;
+    background: inherit;
+
+    position: absolute;
+    transform-origin: left bottom;
+    transform: skew(20deg);
+}
+
+
+
+
+
+   
+   
